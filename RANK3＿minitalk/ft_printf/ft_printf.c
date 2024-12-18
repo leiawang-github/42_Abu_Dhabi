@@ -6,7 +6,7 @@
 /*   By: leia <leia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:48:47 by leiwang           #+#    #+#             */
-/*   Updated: 2024/08/11 14:34:20 by leia             ###   ########.fr       */
+/*   Updated: 2024/12/18 13:34:25 by leia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,23 @@
 
 static int	ft_para_len(const char c, va_list args)
 {
-	int	len;
-
-	len = 0;
 	if (c == '%')
-		len += ft_putchar('%');
+		return (ft_putchar('%'));
 	else if (c == 'c')
-		len += ft_putchar(va_arg(args, int));
+		return (ft_putchar(va_arg(args, int)));
 	else if (c == 's')
-		len += ft_putstr(va_arg(args, char *));
+		return (ft_putstr(va_arg(args, char *)));
 	else if (c == 'd' || c == 'i')
-		len += ft_put_signed_int(va_arg(args, int));
+		return (ft_put_signed_int(va_arg(args, int)));
 	else if (c == 'p')
-		len += ft_puthex_with_pre(va_arg(args, unsigned long));
+		return (ft_puthex_with_pre(va_arg(args, unsigned long)));
 	else if (c == 'u')
-		len += ft_put_unsigned_int(va_arg(args, unsigned int));
+		return (ft_put_unsigned_int(va_arg(args, unsigned int)));
 	else if (c == 'x')
-		len += ft_puthex(va_arg(args, int));
+		return (ft_puthex(va_arg(args, int)));
 	else if (c == 'X')
-		len += ft_puthex_toupper(va_arg(args, int));
-	return (len);
+		return (ft_puthex_toupper(va_arg(args, int)));
+	return (-1);
 }
 
 int	ft_printf(const char *str, ...)
@@ -41,6 +38,7 @@ int	ft_printf(const char *str, ...)
 	va_list	args;
 	int		i;
 	int		count;
+	int		res;
 
 	count = 0;
 	i = 0;
@@ -48,12 +46,15 @@ int	ft_printf(const char *str, ...)
 	while (str[i] != '\0')
 	{
 		if (str[i] == '%')
-		{
-			count = count + ft_para_len(str[i + 1], args);
-			i++;
-		}
+			res = ft_para_len(str[++i], args);
 		else
-			count += ft_putchar(str[i]);
+			res = ft_putchar(str[i]);
+		if (res == -1)
+		{
+			va_end(args);
+			return (-1);
+		}
+		count += res;
 		i++;
 	}
 	va_end(args);

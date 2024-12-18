@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthex.c                                        :+:      :+:    :+:   */
+/*   ft_put_unsigned_int.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leiwang <leiwang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/09 15:41:25 by leia              #+#    #+#             */
-/*   Updated: 2024/08/10 18:10:32 by leiwang          ###   ########.fr       */
+/*   Created: 2024/08/10 17:35:14 by leiwang           #+#    #+#             */
+/*   Updated: 2024/08/11 22:12:34 by leiwang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_puthex(unsigned int nbr)
+int	ft_put_unsigned_int(unsigned int nbr)
 {
-	char			*container;
-	unsigned int	count;
+	int	count;
+	int	result;
 
-	container = "0123456789abcdef";
 	count = 0;
-	if (nbr >= 16)
-		count = count + ft_puthex(nbr / 16);
-	write(1, &container[nbr % 16], 1);
-	return (count + 1);
+	if (nbr >= 10)
+	{
+		result = ft_put_unsigned_int(nbr / 10);
+		if (result == -1)
+			return (-1);
+		count += result;
+	}
+	result = ft_putchar((nbr % 10) + '0');
+	if (result == -1)
+		return (-1);
+	count += result;
+	return (count);
 }
 
-// int main(void)
+// int	main(void)
 // {
-//     ft_puthex(0x6789abc);
+// 	int	result;
+
+// 	ft_put_unsigned_int(987);
+// 	result = ft_put_unsigned_int(5);
+// 	printf("%d", result);
 // }

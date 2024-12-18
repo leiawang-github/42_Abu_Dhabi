@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_unsigned_int.c                              :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leia <leia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/10 17:35:14 by leiwang           #+#    #+#             */
-/*   Updated: 2024/08/11 14:35:06 by leia             ###   ########.fr       */
+/*   Created: 2024/08/06 10:28:08 by leiwang           #+#    #+#             */
+/*   Updated: 2024/12/18 13:30:37 by leia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	ft_put_unsigned_int(unsigned int nbr)
-{
-	unsigned int	count;
+# include <stdarg.h>
+# include <unistd.h>
+# include <stdio.h>
 
-	count = 0;
-	if (nbr >= 10)
-	{
-		count = count + ft_put_unsigned_int(nbr / 10);
-		count = count + ft_put_unsigned_int(nbr % 10);
-	}
-	else
-	{
-		count = count + ft_putchar((nbr + '0'));
-	}
-	return (count);
-}
+int	ft_putchar(char c);
+int	ft_putstr(char *str);
+int	ft_put_signed_int(int nbr);
+int	ft_put_unsigned_int(unsigned int nbr);
+int	ft_puthex(unsigned int nbr);
+int	ft_puthex_with_pre(unsigned long nbr);
+int	ft_puthex_toupper(unsigned int nbr);
+int	ft_printf(const char *str, ...);
 
-// int	main(void)
-// {
-// 	ft_put_unsigned_int(0);
-// }
+#endif

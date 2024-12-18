@@ -3,40 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   ft_puthex_with_pre.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leiwang <leiwang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: leia <leia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:36:59 by leiwang           #+#    #+#             */
-/*   Updated: 2024/08/10 18:15:11 by leiwang          ###   ########.fr       */
+/*   Updated: 2024/12/18 13:30:15 by leia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_puthex_ptr(unsigned long nbr)
+static int	ft_puthex_ptr(unsigned long nbr)
 {
-	char			*container;
-	unsigned int	count;
+	char	*container;
+	int		count;
+	int		result;
 
 	container = "0123456789abcdef";
 	count = 0;
 	if (nbr >= 16)
-		count = count + ft_puthex_ptr(nbr / 16);
-	write(1, &container[nbr % 16], 1);
+	{
+		result = ft_puthex_ptr(nbr / 16);
+		if (result == -1)
+			return (-1);
+		count = count + result;
+	}
+	result = ft_putchar(container[nbr % 16]);
+	if (result == -1)
+		return (-1);
 	return (count + 1);
 }
 
 int	ft_puthex_with_pre(unsigned long nbr)
 {
-	unsigned int	result;
+	int	result;
+	int	hex_prefix;
+	int	ptr_prefix;
 
 	if (nbr == 0)
-		return (ft_putstr("0x0"));
+	{
+		result = ft_putstr("0x0");
+		if (result == -1)
+			return (-1);
+		return (result);
+	}
 	else
-		result = ft_putstr("0x") + ft_puthex_ptr(nbr);
-	return (result);
+	{
+		hex_prefix = ft_putstr("0x");
+		if (hex_prefix == -1)
+			return (-1);
+		ptr_prefix = ft_puthex_ptr(nbr);
+		if (ptr_prefix == -1)
+			return (-1);
+		result = hex_prefix + ptr_prefix;
+		return (result);
+	}
 }
 
-// int main(void)
+// int	main(void)
 // {
-//     ft_puthex_with_pre(0xffffffffff);
+// 	ft_puthex_with_pre(0xffffffffff);
 // }

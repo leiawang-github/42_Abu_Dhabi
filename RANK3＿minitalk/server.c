@@ -6,7 +6,7 @@
 /*   By: leia <leia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:12:18 by leia              #+#    #+#             */
-/*   Updated: 2024/12/16 15:49:37 by leia             ###   ########.fr       */
+/*   Updated: 2024/12/18 13:40:24 by leia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	signal_handler(int signal)
 	{
 		if (result == '\0')
 		{
-			printf("\n");
+			ft_printf("\n");
 		}
 		else
 		{
-			printf("%c", result);
+			ft_printf("%c", result);
 		}
 		result = 0;
 		bit_count = 0;
@@ -41,7 +41,7 @@ int	main(void)
 	pid_t	pid;
 
 	pid = getpid();
-	printf("Server PID: %d\n", pid);
+	ft_printf("Server PID: %d\n", pid);
 	signal(SIGUSR1, signal_handler);
 	signal(SIGUSR2, signal_handler);
 	while (1)

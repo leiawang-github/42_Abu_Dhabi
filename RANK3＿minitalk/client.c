@@ -6,7 +6,7 @@
 /*   By: leia <leia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 16:30:41 by leia              #+#    #+#             */
-/*   Updated: 2024/12/16 15:50:15 by leia             ###   ########.fr       */
+/*   Updated: 2024/12/18 10:24:06 by leia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,21 @@ int	main(int argc, char **argv)
 		server_id = atoi(argv[1]);
 		if (!server_id)
 		{
-			printf("[错误]：输入的 PID 无效。\n");
+			ft_printf("[错误]：输入的 PID 无效。\n");
 			return (0);
 		}
 		message = argv[2];
 		if (message[0] == '\0')
 		{
-			printf("Please enter a message\n");
+			ft_printf("Please enter a message\n");
 			return (0);
 		}
 		send_signals(server_id, message);
 	}
 	else
 	{
-		printf("Wrong input\n");
-		printf("Please enter: PID and a message\n");
+		ft_printf("Wrong input\n");
+		ft_printf("Please enter: PID and a message\n");
 	}
 	return (0);
 }

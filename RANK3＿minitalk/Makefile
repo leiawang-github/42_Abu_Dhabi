@@ -6,7 +6,7 @@
 #    By: leia <leia@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 15:45:43 by leia              #+#    #+#              #
-#    Updated: 2024/12/16 15:47:21 by leia             ###   ########.fr        #
+#    Updated: 2024/12/18 13:38:11 by leia             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,23 +24,23 @@ CFLAGS 	= -Wall -Wextra -Werror
 all:		${NAME}
 
 %.o:	%.c
-		${CC} ${CFLAGS} -Iprintf -c $? -o $@
+		${CC} ${CFLAGS} -Ift_printf -c $? -o $@
 
 ${NAME}:	 server client
 
 server:		server.o
-		@make -C printf
-		${CC} ${CFLAGS} $? -Lprintf -lftprintf -o server
+		@make -C ft_printf
+		${CC} ${CFLAGS} $? -Lft_printf -lftprintf -o server
 
 client:		client.o
-		@make -C printf
-		${CC} ${CFLAGS} $? -Lprintf -lftprintf -o client
+		@make -C ft_printf
+		${CC} ${CFLAGS} $? -Lft_printf -lftprintf -o client
 
 printf:
-		make -C printf
+		make -C ft_printf
 
 clean:
-			make clean -C printf
+			make clean -C ft_printf
 			${RM} ${OBJS}
 
 fclean:		clean
@@ -48,4 +48,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		printf
+.PHONY:		ft_printf
