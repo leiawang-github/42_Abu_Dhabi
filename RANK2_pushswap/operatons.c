@@ -1,41 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pushswap.h                                         :+:      :+:    :+:   */
+/*   operatons.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leiwang <leiwang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/28 16:00:57 by leiwang           #+#    #+#             */
-/*   Updated: 2025/01/20 18:28:39 by leiwang          ###   ########.fr       */
+/*   Created: 2025/01/20 18:08:10 by leiwang           #+#    #+#             */
+/*   Updated: 2025/01/20 19:32:37 by leiwang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSHSWAP_H
-#define PUSHSWAP_H
+#include "pushswap.h"
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
+//let's do push function with linked list
 
-int ft_is_digit(char c);
-int is_integer(int ac, char **av);
-int is_not_dup(int ac, char **av);
-int is_within_limits(int ac, char **av);
-int ft_strcmp(char *s1, char *s2);
+//1. 创建一个新节点
+//2. 把这个节点指向stack_a
+//3. 将头指针指向这个新节点
 
-typedef struct s_stack
+t_stack *newnode;
+
+int pb(t_stack **stack_a, t_stack **stack_b) // 想实现从stack_a
 {
-	int data;
-
-
-
-
+	
+	
 
 	
-	struct stack *next;
-} t_stack;
-
-
-#endif
-
+}

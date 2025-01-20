@@ -6,28 +6,27 @@
 /*   By: leiwang <leiwang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 13:34:48 by leiwang           #+#    #+#             */
-/*   Updated: 2025/01/19 20:35:01 by leiwang          ###   ########.fr       */
+/*   Updated: 2025/01/20 18:23:30 by leiwang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int main(int argc, char **argv)
+int main(int ac, char **av)
 {
-	if (is_double || not_integer || )
+	int para_size;
+
+	para_size = ac - 1;
+	if (!is_not_dup || !is_integer || !is_within_limits)
+		return (NULL);
+	
+	
 }
 
 
 
-typedef struct stack
-{
-	int data;
-	struct stack *next;
-} stack_a, stack_b;
 
-stack_a *top_a = NULL; 
-stack_b *top_b = NULL;
 
-// 如果stack_a 为空或者有dups，直接返回null
+
 
 
