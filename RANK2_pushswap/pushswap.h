@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leiwang <leiwang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: leia <leia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:00:57 by leiwang           #+#    #+#             */
-/*   Updated: 2025/01/20 18:28:39 by leiwang          ###   ########.fr       */
+/*   Updated: 2025/01/20 23:40:02 by leia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,7 @@ int ft_strcmp(char *s1, char *s2);
 typedef struct s_stack
 {
 	int data;
-
-
-
-
-
-	
-	struct stack *next;
+	struct s_stack *next;
 } t_stack;
 
 
