@@ -1,26 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pushswap.c                                         :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leiwang <leiwang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: leia <leia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 13:34:48 by leiwang           #+#    #+#             */
-/*   Updated: 2025/01/20 18:23:30 by leiwang          ###   ########.fr       */
+/*   Updated: 2025/01/21 14:36:22 by leia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "push_swap.h"
 
 int main(int ac, char **av)
 {
-	int para_size;
-
-	para_size = ac - 1;
-	if (!is_not_dup || !is_integer || !is_within_limits)
-		return (NULL);
+	t_stack *stack_a = NULL;
+	t_stack *stack_b = NULL;
+	int i;
 	
-	
+	i = 1;
+	if (ac < 2)
+		return(0);
+	if (!is_not_dup(ac,av) || !is_integer(ac, av) || !is_within_limits(ac, av))
+		return(1);
+	while(i< ac)
+	{
+		push(&stack_a, ft_atoi(av[i]));
+		i++;
+	}
+	if(ac == 2)
+		return (0);
+	else if ( )
+	{
+    	if (stack_a->data > stack_a->next->data)
+        sa(&stack_a);  
+	}
+	else
+		radix_sort(&stack_a, &stack_b);
+	return (0);
 }
 
 
