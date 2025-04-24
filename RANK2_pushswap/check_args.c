@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int is_not_dup(int ac, char **av)
+int is_not_dup(int ac, char **av) //判断输入的参数里是否有重复，有的话提示错误（返回0）
 {
 	int i;
 	int j;
@@ -35,7 +35,7 @@ int is_not_dup(int ac, char **av)
 	return (0);
 }
 
-int is_integer(int ac, char **av)
+int is_integer(int ac, char **av) //如果是小数不行，是字符串也不行
 {
     int i;
     int j;
@@ -60,6 +60,12 @@ int is_integer(int ac, char **av)
     return (0);
 }
 
+int main(int ac, char **av)
+{
+	int result = is_integer(ac,av);
+	printf("%d\n",result);
+}
+
 int is_within_limits(int ac, char **av) 
 {
 	(void)ac;
@@ -75,4 +81,3 @@ int is_within_limits(int ac, char **av)
 	printf("Error\n");
 	return (1);
 }
-

@@ -23,3 +23,111 @@ I'm still in the beginning stage of my student journey at 42 Abu Dhabi. Completi
 - Are there any coding or tech-related blogs, books, or resources that have been particularly helpful to you?
 
 As someone with a non-coding background, I'm still collecting resources from others. However, I found the CS50 series very easy to understand and helpful. Also, a YouTube channel called Portfolio Course is beneficial for beginners. Besides these, I sometimes check the OSSU computer science program to keep myself aligned with the academic way of nurturing oneself to be a CS student through a self-taught approach. Lex Fridman's podcast is a must-recommendation for every CS learner or anyone interested in tech.
+
+
+
+### **接续方式详细说明**
+
+#### 1. **い形容词 + 名词**
+
+- 接法：**直接连接**
+- 例：新しい本（新书）、寒い日（寒冷的日子）
+
+#### 2. **な形容词 + 名词**
+
+- 接法：**形容词 + な + 名词**
+- 例：元気な人、きれいな花
+- 注意：部分な形容词修饰名词时要用**の**（如「好き」→「音楽が好きな人」）
+
+#### 3. **名词 + の + 名词**
+
+- 接法：**名词1 の 名词2**
+- 例：日本の文化、先生の言葉
+- 「の」表示所属、性质、出处等
+
+#### 4. **动词（句）+ 名词**
+
+- 接法：用**简体修饰形**
+  - **肯定现在**：辞书形 + 名词 → 書く人（写字的人）
+  - **否定现在**：ない形 + 名词 → 書かない人（不写字的人）
+  - **过去肯定**：た形 + 名词 → 書いた人（写过字的人）
+  - **过去否定**：なかった形 + 名词 → 書かなかった人（没写字的人）
+- 类似英语里的定语从句功能
+
+#### 5. **副词修饰整体（非直接修饰名词）**
+
+- 如：**よくある話（经常有的事）**
+- 实际修饰的是**动词+名词**的组合
+
+#### 6. **数词/量词 + の + 名词**
+
+- 例：二人の子供、三つの理由、百円のパン
+- 如果没有“の”，多用于“数量 + 量词”结构里：リンゴ三個
+
+#### 7. **指示词 + 名词**
+
+- この、その、あの、どの + 名词
+- 例：この人、どの服
+
+#### 8. **疑问词 + 名词**
+
+- 例：どんな本、何人（なにじん）、どの会社
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
