@@ -1,32 +1,71 @@
 #include "push_swap.h"
 
-int parse_args(int argc, char **argv, t_stack **stack_a)
+void add_to_stack_a(t_stack **stack_a, int value)
 {
-    int     i;
+    t_stack *new_node;
+    t_stack *temp;
+
+    new_node = malloc(sizeof(t_stack));
+    if (!new_node)
+        return ;
+    new_node->data = value;
+    new_node->next = NULL;
+
+    if (*stack_a == NULL)
+        *stack_a = new_node;
+    else
+    {
+        temp = *stack_a;
+        while (temp->next)
+            temp = temp->next;
+        temp->next = new_node;
+    }
+}
+
+int *parse_args(int argc, char **argv, t_stack **stack_a)
+{
+    int     i, j;
     char    **split;
-    int     j;
 
     i = 1;
     while (i < argc)
     {
-        split = ft_split(argv[i], ' ');  // 拆分每个 av[i]
+        split = ft_split(argv[i], ' ');
         if (!split)
             return (error());
-
         j = 0;
-        while (split[j])
+        while (split[j]) 
         {
-            // 检查是否为合法整数，例如 is_valid_integer(split[j])
-            // 再 atoi 然后装进链表
-            
-            
-            
-            
-            
+            if (is_not_dup(split[j]) == 0 && integers_only(split[j]) == 0 && is_within_limits(split[j]) == 0)
+            {
+                if (!ft_atoi(split[j]))
+                    return (1);
+                add_to_stack_a(stack_a,ft_atoi(split[j]));
+            }
             j++;
         }
-        free_split(split); // 释放 ft_split 分配的数组
+        free_split(split);
         i++;
     }
     return (0);
+}
+
+void print_stack_a(t_stack *stack_a, int data)
+{
+    t_stack *temp = stack_a;
+
+    while(temp)
+    {
+        temp->data = data;
+        printf("%d\n", data);
+        temp = temp->next;
+    }
+}
+
+int main(int ac, char **av)
+{
+    t_stack **stack_a;
+
+
+
 }

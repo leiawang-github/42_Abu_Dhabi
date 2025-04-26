@@ -12,18 +12,18 @@
 
 #include "push_swap.h"
 
-int is_not_dup(int ac, char **av) //判断输入的参数里是否有重复，有的话提示错误（返回0）
+int is_not_dup(char *str) //判断输入的参数里是否有重复，有的话提示错误（返回0）
 {
 	int i;
 	int j;
 
-	i = 1;
-	while (i < ac )
+	i = 0;
+	while (i < ft_strlen(str) )
 	{
 		j = i + 1;
-		while(j < ac)
+		while ( str[j])
 		{
-			if (ft_strcmp(av[i], av[j]) == 0)
+			if (str[i] == str[j])
 			{
 				printf("Error\n");
 				return (1);
@@ -35,49 +35,52 @@ int is_not_dup(int ac, char **av) //判断输入的参数里是否有重复，�
 	return (0);
 }
 
-int is_integer(int ac, char **av) //如果是小数不行，是字符串也不行
+int integers_only(char *str) //other than str[0] is '+' or '-' or nums, the str should be numstr
 {
-    int i;
-    int j;
-
-    i = 1;
-    while (i < ac)
-    {
-        j = 0;
-        if ((av[i][j] == '-' || av[i][j] == '+') && av[i][j + 1] != '\0')
-            j++;
-        while (av[i][j])
-        {
-            if (!ft_is_digit(av[i][j]))
-			{
-				printf("Error\n");
-				return (1);
-			} 
-            j++;
-        }
-        i++;
-    }
-    return (0);
-}
-
-int main(int ac, char **av)
-{
-	int result = is_integer(ac,av);
-	printf("%d\n",result);
-}
-
-int is_within_limits(int ac, char **av) 
-{
-	(void)ac;
 	int i;
 
 	i = 1;
-	while(av[i])
+	if (str[0] != '+' && str[0] != '-' && (!('0' <= str[0] && str[0] <= '9')))
 	{
-		if (av[i]>= INT_MIN && av[i] <= INT_MAX)
-			return (0);
+		printf("Error\n");
+		return (1);
+	}
+	while (str[i])
+	{
+		if (!('0' <= str[i] && str[i] <= '9'))
+		{
+			printf("Error\n");
+			return (1);
+		}
 		i++;
 	}
-	printf("Error\n");
-	return (1);
+	return (0); 	
 }
+
+int	is_within_limits(char *str)
+{
+	long long result = 0;
+	int sign = 1;
+
+	if (*str == '-')
+		sign = -1;
+	if (*str == '-' || *str == '+')
+		str++;
+	if (!(*str >= '0' && *str <= '9'))
+		return (0);
+	while (*str >= '0' && *str <= '9')
+	{
+		result = result * 10 + (*str - '0');
+		str++;
+	}
+	if (*str != '\0')
+		return (0);
+	result *= sign;
+	if (result < INT_MIN || result > INT_MAX)
+	{
+		printf("Error\n");
+		return (1);
+	}
+	return (0);
+}
+

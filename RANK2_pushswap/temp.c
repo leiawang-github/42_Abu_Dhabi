@@ -1,59 +1,52 @@
 #include "push_swap.h"
 
-// int is_valid_number(char *str) //
-// {
-//     int i;
-	
-// 	i = 0;
-//     while (str[i] == ' ' || str[i] == '\t')
-//         i++;
-//     if (str[i] == '+' || str[i] == '-')
-//         i++;
-//     if (!str[i])
-//         return 0;
-//     while (str[i])
-//     {
-//         if (str[i] < '0' || str[i] > '9')
-//             return 0;
-//         i++;
-//     }
-//     return (1);
-// }
+#include <stdio.h>
+#include <stdlib.h>
 
-// int main()
-// {
-    
-    
-//     printf("%d\n", is_valid_number("1234a"));
-// }
-
-
-int is_integer(int ac, char **av)
+typedef struct s_stack
 {
-    int i;
-    int j;
+	int data;
+	struct s_stack *next;
+} t_stack;
 
-    i = 1;
-    while (i < ac)
-    {
-        j = 0;
-        if ((av[i][j] == '-' || av[i][j] == '+') && av[i][j + 1] != '\0')
-            j++;
-        while (av[i][j])
-        {
-            if (!ft_is_digit(av[i][j]))
-			{
-				printf("Error\n");
-				return (0);
-			} 
-            j++;
-        }
-        i++;
-    }
-    return (1);
+t_stack *create_node(int data)
+{
+    t_stack *new_node = malloc(sizeof(t_stack));
+    if (!new_node)
+        return (NULL);
+    new_node->data = data;
+    new_node->next = NULL;
+    return (new_node);
 }
 
-int main()
+void print_list(t_stack *stack_a)
 {
-    
+    t_stack *temp = stack_a;
+    while (temp)
+    {
+        printf("%d\n", temp -> data);
+        temp = temp -> next;
+    }
+    temp = stack_a;
+    { while (temp)
+        {
+            printf("%d\n", temp -> data);
+            temp = temp -> next;
+        }
+    }
+}
+
+int main(void)
+{
+    t_stack *stack_a = NULL;
+    t_stack *n1 = create_node(42);
+    t_stack *n2 = create_node(18);
+    t_stack *n3 = create_node(34);
+
+    stack_a = n1;
+    n1->next = n2;
+    n2->next = n3;
+
+    print_list(stack_a);
+    return (0);
 }

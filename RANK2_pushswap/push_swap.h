@@ -25,15 +25,17 @@ typedef struct s_stack
 	struct s_stack *next;
 }t_stack;
 
+int ft_strlen(char *str);
 int ft_is_digit(char c);
-int is_integer(int ac, char **av);
-int is_not_dup(int ac, char **av);
-int is_within_limits(int ac, char **av);
+int integers_only(char *str);
+int is_not_dup(char *str);
+int is_within_limits(char *str);
 int ft_strcmp(char *s1, char *s2);
 int	ft_atoi(char *str);
 char **ft_split(char *str, char c);
 void push(t_stack **stack, int data);
 int stack_size(t_stack *stack);
+t_stack *create_node(int data);
 void pa(t_stack **stack_a, t_stack **stack_b);
 void pb(t_stack **stack_a, t_stack **stack_b);
 void ra(t_stack **stack_a);
@@ -41,6 +43,6 @@ void rb(t_stack **stack_b);
 void sa(t_stack **stack_a);
 void sb(t_stack **stack_b);
 void radix_sort(t_stack **stack_a, t_stack **stack_b);
-
+void add_to_stack_a(t_stack **stack_a, int value);
 
 #endif
