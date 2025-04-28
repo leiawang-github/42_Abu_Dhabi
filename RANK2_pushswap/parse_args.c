@@ -22,7 +22,7 @@ void add_to_stack_a(t_stack **stack_a, int value)
     }
 }
 
-int *parse_args(int argc, char **argv, t_stack **stack_a)
+int parse_args(int argc, char **argv, t_stack **stack_a)
 {
     int     i, j;
     char    **split;
@@ -32,15 +32,16 @@ int *parse_args(int argc, char **argv, t_stack **stack_a)
     {
         split = ft_split(argv[i], ' ');
         if (!split)
-            return (error());
+            return (1);
         j = 0;
         while (split[j]) 
         {
             if (is_not_dup(split[j]) == 0 && integers_only(split[j]) == 0 && is_within_limits(split[j]) == 0)
             {
-                if (!ft_atoi(split[j]))
+                int value;
+                if (!ft_safe_atoi(split[j], &value))
                     return (1);
-                add_to_stack_a(stack_a,ft_atoi(split[j]));
+                add_to_stack_a(stack_a, value);
             }
             j++;
         }
@@ -50,22 +51,24 @@ int *parse_args(int argc, char **argv, t_stack **stack_a)
     return (0);
 }
 
-void print_stack_a(t_stack *stack_a, int data)
+void print_stack_a(t_stack *stack_a)
 {
     t_stack *temp = stack_a;
 
-    while(temp)
+    while (temp)
     {
-        temp->data = data;
-        printf("%d\n", data);
+        printf("%d\n", temp->data);
         temp = temp->next;
     }
 }
 
 int main(int ac, char **av)
 {
-    t_stack **stack_a;
-
-
-
+    t_stack *stack_a = NULL;
+    if (parse_args(ac,av,&stack_a) == 1)
+    {
+        printf("Parsing Error");
+        return (1);
+    }
+    print_stack_a(stack_a);
 }

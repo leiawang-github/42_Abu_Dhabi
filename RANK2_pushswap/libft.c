@@ -100,3 +100,62 @@ char **ft_split(char *str, char c)
 	out[k] = NULL;
 	return out;
 }
+
+void free_split(char **split)
+{
+    int i = 0;
+
+    if (!split)
+        return;
+    while (split[i])
+    {
+        free(split[i]);
+        i++;
+    }
+    free(split);
+}
+
+#include <limits.h> // 为了 INT_MAX, INT_MIN
+
+int ft_safe_atoi(const char *str, int *out)
+{
+    long long result = 0;
+    int sign = 1;
+    int i = 0;
+
+    if (!str)
+        return (0);
+
+    // 跳过空格
+    while (str[i] == ' ' || str[i] == '\t')
+        i++;
+
+    // 检查正负号
+    if (str[i] == '-' || str[i] == '+')
+    {
+        if (str[i] == '-')
+            sign = -1;
+        i++;
+    }
+
+    // 必须至少有一个数字
+    if (!str[i])
+        return (0);
+
+    while (str[i])
+    {
+        if (str[i] < '0' || str[i] > '9')
+            return (0); // 非数字字符
+        
+        result = result * 10 + (str[i] - '0');
+
+        // 检查是否溢出
+        if ((result * sign) > INT_MAX || (result * sign) < INT_MIN)
+            return (0);
+
+        i++;
+    }
+
+    *out = (int)(result * sign);
+    return (1); // 成功
+}
