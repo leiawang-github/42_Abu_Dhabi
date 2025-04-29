@@ -14,36 +14,35 @@
 
 int main(int ac, char **av)
 {
-	t_stack *stack_a = NULL;
-	t_stack *stack_b = NULL;
-	int i;
-	
-	i = 1;
-	if (ac < 2)
-		return(0);
-	if (!is_not_dup(ac,av) || !is_integer(ac, av) || !is_within_limits(ac, av))
-		return(1);
-	while(i< ac)
-	{
-		push(&stack_a, ft_atoi(av[i]));
-		i++;
-	}
-	if(ac == 2)
-		return (0);
-	else if ( )
-	{
-    	if (stack_a->data > stack_a->next->data)
-        sa(&stack_a);  
-	}
-	else
-		radix_sort(&stack_a, &stack_b);
-	return (0);
+    t_stack *stack_a = NULL;
+    t_stack *stack_b = NULL;
+
+    if (ac > 1)
+    {
+        if (valid_args(av + 1) == 0) // 检查参数是否合法
+        {
+            if (add_args_to_stack(av + 1, &stack_a) != 0)
+            {
+                write(2, "Error\n", 6);
+                return (1);
+            }
+            if (is_sorted(stack_a))
+            {
+                free_stack(stack_a);
+                return (0); // 排好了直接退出
+            }
+            if (stack_size(stack_a) <= 5)
+                sort_small(&stack_a, &stack_b);
+            else
+                sort_big(&stack_a, &stack_b);
+            free_stack(stack_a);
+            free_stack(stack_b); // 注意 stack_b也要 free（即使可能是空的）
+        }
+        else
+        {
+            write(2, "Error\n", 6);
+            return (1);
+        }
+    }
+    return (0);
 }
-
-
-
-
-
-
-
-

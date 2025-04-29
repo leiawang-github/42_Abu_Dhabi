@@ -12,22 +12,23 @@
 
 #include "push_swap.h"
 
-int is_not_dup(char *str) //判断输入的参数里是否有重复，有的话提示错误（返回0）
+int no_dups(char **args)
 {
 	int i;
 	int j;
+	char **split;
 
 	i = 0;
-	while (i < ft_strlen(str) )
+	split = ft_split(args, ' ');
+	if(!split)
+		return (NULL);
+	while (split[i])
 	{
 		j = i + 1;
-		while ( str[j])
+		while (split[j])
 		{
-			if (str[i] == str[j])
-			{
-				printf("Error\n");
+			if (split[i] == split[j])
 				return (1);
-			}
 			j++;
 		}
 		i++;
@@ -42,14 +43,14 @@ int integers_only(char *str) //other than str[0] is '+' or '-' or nums, the str 
 	i = 1;
 	if (str[0] != '+' && str[0] != '-' && (!('0' <= str[0] && str[0] <= '9')))
 	{
-		printf("Error\n");
+		printf("Error in Input\n");
 		return (1);
 	}
 	while (str[i])
 	{
 		if (!('0' <= str[i] && str[i] <= '9'))
 		{
-			printf("Error\n");
+			printf("Error in Input\n");
 			return (1);
 		}
 		i++;
@@ -78,9 +79,32 @@ int	is_within_limits(char *str)
 	result *= sign;
 	if (result < INT_MIN || result > INT_MAX)
 	{
-		printf("Error\n");
+		printf("Error in Input\n");
 		return (1);
 	}
 	return (0);
 }
 
+int are_valid_args(char **args)
+{
+	int i;
+	int j;
+	char **split; // 这表示变量是split， 类型是char **；想象一个 字符串数组如： “hey" "how" "are" "you" 作为一个整体
+
+	j = 0;
+	split = ft_split(args, ' ');
+	if (!split)
+		return (1); // 啥时候是return 1， 啥时候是exit 1？
+	while (split[j])
+	{
+		printf("%s\n",split[j]);
+		if (!(integers_only(split[j]))) // z这个函数应该帮我们判断，是否只有integer，没有除了‘-’ ‘ +’ ‘0’ - ‘9’之外的字符
+			return (free_split(split[j]), 1); 
+		if (!(is_within_limits(split[j]))) // 判断这个字符串是否在INT范围内
+			return (free_split(split[j]), 1); 
+		if (!(no_dups(*split[j]))) // 这里得判断两点：每一个split[j] 都是独一无二的, 需要借助atoi判断
+			return (free_split(split[j]), 1); 
+	}
+	free_split(split[i]);
+	i++;
+}

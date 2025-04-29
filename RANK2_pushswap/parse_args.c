@@ -51,24 +51,3 @@ int parse_args(int argc, char **argv, t_stack **stack_a)
     return (0);
 }
 
-void print_stack_a(t_stack *stack_a)
-{
-    t_stack *temp = stack_a;
-
-    while (temp)
-    {
-        printf("%d\n", temp->data);
-        temp = temp->next;
-    }
-}
-
-int main(int ac, char **av)
-{
-    t_stack *stack_a = NULL;
-    if (parse_args(ac,av,&stack_a) == 1)
-    {
-        printf("Parsing Error");
-        return (1);
-    }
-    print_stack_a(stack_a);
-}

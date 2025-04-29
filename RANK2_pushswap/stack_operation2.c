@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int stack_size(t_stack *stack) 
+int stack_size(t_stack *stack) //计算出任意stack里面有多少个nodes
 {
     int count = 0;
     t_stack *temp = stack;
@@ -26,7 +26,7 @@ int stack_size(t_stack *stack)
 
 void push(t_stack **stack, int data)
 {
-    t_stack *newnode = (t_stack *)malloc(sizeof(t_stack));
+    t_stack *newnode = malloc(sizeof(t_stack));
     if (!newnode) {
         printf("Memory allocation error\n");
         exit(1);
@@ -35,6 +35,7 @@ void push(t_stack **stack, int data)
     newnode->next = *stack;
     *stack = newnode;
 }
+
 void pa(t_stack **stack_a, t_stack **stack_b) 
 {
 	t_stack *temp;
