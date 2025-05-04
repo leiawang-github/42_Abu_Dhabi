@@ -6,43 +6,46 @@
 /*   By: leia <leia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 13:34:48 by leiwang           #+#    #+#             */
-/*   Updated: 2025/01/21 14:36:22 by leia             ###   ########.fr       */
+/*   Updated: 2025/05/04 18:20:11 by leia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int main(int ac, char **av)
+int main(int argc, char **argv)
 {
-    t_stack *stack_a = NULL;
-    t_stack *stack_b = NULL;
+	t_stack *stack_a = NULL;
+	t_stack *stack_b = NULL;
+	int *intarr;
+	int size;
 
-    if (ac > 1)
-    {
-        if (valid_args(av + 1) == 0) // 检查参数是否合法
-        {
-            if (add_args_to_stack(av + 1, &stack_a) != 0)
-            {
-                write(2, "Error\n", 6);
-                return (1);
-            }
-            if (is_sorted(stack_a))
-            {
-                free_stack(stack_a);
-                return (0); // 排好了直接退出
-            }
-            if (stack_size(stack_a) <= 5)
-                sort_small(&stack_a, &stack_b);
-            else
-                sort_big(&stack_a, &stack_b);
-            free_stack(stack_a);
-            free_stack(stack_b); // 注意 stack_b也要 free（即使可能是空的）
-        }
-        else
-        {
-            write(2, "Error\n", 6);
-            return (1);
-        }
-    }
-    return (0);
+	if (argc < 2)
+		return (0);
+
+	intarr = argvs_to_intarr(argc, argv, &size);
+	if (!intarr)
+		return (1);
+	push_to_stack(&stack_a, intarr, size);
+	free(intarr);
+	if (is_sorted(stack_a))
+		return (free_stack(stack_a), 0);
+	if (stack_size(stack_a) <= 5)
+		sort_small(&stack_a, &stack_b);
+	else
+		radix_sort(&stack_a, &stack_b);
+	free_stack(stack_a);
+	free_stack(stack_b);
+	return (0);
+}
+
+void	push_to_stack(t_stack **stack_a, int *arr, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		add_to_stack_a(stack_a, arr[i]);
+		i++;
+	}
 }

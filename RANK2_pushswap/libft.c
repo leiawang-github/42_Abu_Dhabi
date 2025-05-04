@@ -6,51 +6,18 @@
 /*   By: leia <leia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 13:55:17 by leiwang           #+#    #+#             */
-/*   Updated: 2025/01/21 16:32:06 by leia             ###   ########.fr       */
+/*   Updated: 2025/05/04 12:36:00 by leia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ft_is_digit(char c)
+int	ft_isdigit(char c)
 {
-	return ('0' <= c && c <= '9');
+	return (c >= '0' && c <= '9');
 }
 
-int ft_strcmp(char *s1, char *s2)
-{
-	int i;
-
-	i = 0;
-	while(s1[i]!= '\0' && s2[i] != '\0' )
-	{
-		if(s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
-	}
-	return (s1[i] - s2[i]);
-}
-
-int	ft_atoi(char *str)
-{
-	int result = 0;
-	int sign = 1;
-
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-        	str++;
-	if (*str == '-')
-		sign = -1;
-	if (*str == '-' || *str == '+')
-		str++;
-	while (*str >= '0' && *str <= '9')
-	{
-		result = result * 10 + *str - '0';
-		str++;
-	}
-	return (sign * result);
-}
-
-int ft_strlen(char *str)
+static int ft_strlen(char *str)
 {
 	int i;
 
@@ -60,102 +27,136 @@ int ft_strlen(char *str)
 	return (i);
 }
 
-char **ft_split(char *str, char c)
+void free_strarr(char **strarr)
 {
-    (void) c;
-	int i = 0;
-    int j = 0;
-    int k = 0;
-    int wc = 0;
+    int i = 0;
 
+    if (!strarr)
+        return;
+    while (strarr[i])
+    {
+        free(strarr[i]);
+        i++;
+    }
+    free(strarr);
+}
+
+void	free_all(char **strarr, char *str)
+{
+	free_strarr(strarr);
+	free(str);
+}
+
+int	ft_atoi(char *str)
+{
+	int	i;
+	int	result;
+	int	turn_possitive;
+
+	i = 0;
+	result = 0;
+	turn_possitive = 1;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-')
+	{
+		turn_possitive = turn_possitive * (-1);
+		i++;
+	}
+	else if (str[i] == '+')
+	{
+		turn_possitive = turn_possitive * 1;
+		i++;
+	}
+	while (str[i] >= 48 && str[i] <= 57)
+	{
+		result = result * 10 + str[i] - '0';
+		i++;
+	}
+	return (result * turn_possitive);
+}
+
+static int	get_total_length(int argc, char **argv)
+{
+	int i = 1;
+	int len = 0;
+	while (i < argc)
+		len += ft_strlen(argv[i++]);
+	return len + (argc - 2) + 1; 
+}
+
+char *ft_strjoin(int argc, char **argv)
+{
+	int i = 1, k = 0, j;
+	int total_len = get_total_length(argc, argv);
+	char *result = malloc(total_len);
+	if (!result)
+		return NULL;
+	while (i < argc)
+	{
+		j = 0;
+		while (argv[i][j])
+			result[k++] = argv[i][j++];
+		if (i != argc - 1)
+			result[k++] = ' ';
+		i++;
+	}
+	result[k] = '\0';
+	return result;
+}
+
+static int	count_words(char *str, char c)
+{
+	int i = 0, count = 0;
 	while (str[i])
 	{
-		while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'))
+		while (str[i] == c)
 			i++;
 		if (str[i])
-			wc++;
-		while (str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '\n'))
+			count++;
+		while (str[i] && str[i] != c)
 			i++;
 	}
-	
-	char **out = (char **)malloc(sizeof(char *) * (wc + 1));
-	i = 0; 
-	while (str[i])
+	return count;
+}
+static char	*alloc_word(char *s, int start, int end)
+{
+	char *word = malloc(end - start + 1);
+	int i = 0;
+	if (!word)
+		return NULL;
+	while (start < end)
+		word[i++] = s[start++];
+	word[i] = '\0';
+	return word;
+}
+char **ft_split(char *s, char c)
+{
+	int i = 0, j, k = 0;
+	char **res = malloc(sizeof(char *) * (count_words(s, c) + 1));
+	if (!res)
+		return NULL;
+	while (s[i])
 	{
-		while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'))
+		while (s[i] == c)
 			i++;
-		j = i; 
-		while (str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '\n'))
+		j = i;
+		while (s[i] && s[i] != c)
 			i++;
 		if (i > j)
-		{
-			out[k] = (char *)malloc(sizeof(char) * ((i - j) + 1));
-			int m = 0;
-			while (j < i)
-				out[k][m++] = str[j++];
-			out[k][m] = '\0'; 
-			k++;
-		}
+			res[k++] = alloc_word(s, j, i);
 	}
-	out[k] = NULL;
-	return out;
+	res[k] = NULL;
+	return res;
 }
-
-void free_split(char **split)
+int ft_split_size(char **split)
 {
-    int i = 0;
-
+    int count;
+    
+    count = 0;
     if (!split)
-        return;
-    while (split[i])
-    {
-        free(split[i]);
-        i++;
-    }
-    free(split);
-}
-
-#include <limits.h> // 为了 INT_MAX, INT_MIN
-
-int ft_safe_atoi(const char *str, int *out)
-{
-    long long result = 0;
-    int sign = 1;
-    int i = 0;
-
-    if (!str)
-        return (0);
-
-    // 跳过空格
-    while (str[i] == ' ' || str[i] == '\t')
-        i++;
-
-    // 检查正负号
-    if (str[i] == '-' || str[i] == '+')
-    {
-        if (str[i] == '-')
-            sign = -1;
-        i++;
-    }
-
-    // 必须至少有一个数字
-    if (!str[i])
-        return (0);
-
-    while (str[i])
-    {
-        if (str[i] < '0' || str[i] > '9')
-            return (0); // 非数字字符
-        
-        result = result * 10 + (str[i] - '0');
-
-        // 检查是否溢出
-        if ((result * sign) > INT_MAX || (result * sign) < INT_MIN)
-            return (0);
-
-        i++;
-    }
-
-    *out = (int)(result * sign);
-    return (1); // 成功
+        return 0;
+    while (split[count])
+        count++;
+    return count;
 }
