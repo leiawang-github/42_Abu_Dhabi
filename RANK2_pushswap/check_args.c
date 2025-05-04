@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leia <leia@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: leiwang <leiwang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 13:36:21 by leiwang           #+#    #+#             */
-/*   Updated: 2025/05/04 10:10:32 by leia             ###   ########.fr       */
+/*   Updated: 2025/05/04 22:20:57 by leiwang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 static int	no_duplicate_strs(char **strarr)
 {
-	int i = 0;
-	int j;
-	int k;
+	int	i;
+	int	j;
+	int	k;
 
+	i = 0;
 	while (strarr[i])
 	{
 		j = i + 1;
@@ -27,7 +28,7 @@ static int	no_duplicate_strs(char **strarr)
 			while (strarr[i][k] && strarr[j][k] && strarr[i][k] == strarr[j][k])
 				k++;
 			if (strarr[i][k] == '\0' && strarr[j][k] == '\0')
-				return (0); 
+				return (0);
 			j++;
 		}
 		i++;
@@ -35,13 +36,13 @@ static int	no_duplicate_strs(char **strarr)
 	return (1);
 }
 
-static int	within_int_limit(char **strarr)
+static int	within_int_limit(char **strarr, long long n)
 {
-	int i = 0;
-	int j;
-	long long n;
-	int sign;
+	int			i;
+	int			j;
+	int			sign;
 
+	i = 0;
 	while (strarr[i])
 	{
 		j = 0;
@@ -66,12 +67,12 @@ static int	within_int_limit(char **strarr)
 
 static int	valid_ints_only(char **strarr)
 {
-	int i = 0;
-	int j;
+	int	i;
+	int	j;
 
+	i = 0;
 	if (!strarr)
 		return (0);
-
 	while (strarr[i])
 	{
 		j = 0;
@@ -90,13 +91,16 @@ static int	valid_ints_only(char **strarr)
 	return (1);
 }
 
-int is_valid_split(char **strarr)
+int	is_valid_split(char **strarr)
 {
+	long long	n;
+
+	n = 0;
 	if (!strarr)
 		return (0);
 	if (!valid_ints_only(strarr))
 		return (0);
-	if (!within_int_limit(strarr))
+	if (!within_int_limit(strarr, n))
 		return (0);
 	if (!no_duplicate_strs(strarr))
 		return (0);
