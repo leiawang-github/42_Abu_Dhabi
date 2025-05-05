@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_small_stack_helper.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leiwang <leiwang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: leia <leia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 21:41:58 by leiwang           #+#    #+#             */
-/*   Updated: 2025/05/04 21:54:01 by leiwang          ###   ########.fr       */
+/*   Updated: 2025/05/05 06:28:35 by leia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ int	move_min_to_top(t_stack **stack_a, int min_index)
 	{
 		i = 0;
 		while (i++ < min_index)
-			count_ops += rra(stack_a);
+			count_ops += ra(stack_a);
 	}
 	else
 	{
 		i = 0;
 		while (i++ < size - min_index)
-			count_ops += rra(stack_a);
+			count_ops += ra(stack_a);
 	}
 	return (count_ops);
 }

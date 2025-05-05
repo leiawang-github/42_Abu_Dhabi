@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_into_stack.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leiwang <leiwang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: leia <leia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:08:10 by leiwang           #+#    #+#             */
-/*   Updated: 2025/05/04 22:18:05 by leiwang          ###   ########.fr       */
+/*   Updated: 2025/05/04 23:23:09 by leia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,6 @@ void	add_to_stack_a(t_stack **stack_a, int value)
 	}
 }
 
-// void	print_stack(t_stack *stack)
-// {
-// 	t_stack *temp;
-
-// 	temp = stack;
-// 	while (temp)
-// 	{
-// 		printf("%d ", temp->data);
-// 		temp = temp->next;
-// 	}
-// 	printf("\n");
-// }
-
 int	is_sorted(t_stack *stack)
 {
 	t_stack	*temp;
@@ -80,6 +67,9 @@ int	stack_size(t_stack *stack)
 
 	count = 0;
 	while (stack)
+	{
 		count++;
+		stack = stack->next;
+	}
 	return (count);
 }

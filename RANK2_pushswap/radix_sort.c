@@ -3,56 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   radix_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leiwang <leiwang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: leia <leia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:11:18 by leia              #+#    #+#             */
-/*   Updated: 2025/05/04 21:09:20 by leiwang          ###   ########.fr       */
+/*   Updated: 2025/05/05 11:41:57 by leia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	get_max(t_stack *stack)
+static int get_max_int(t_stack *stack)
 {
-	int	max;
+	int max_int;
 
-	max = INT_MIN;
+    max_int = 0;
+	if (!stack)
+		return (0); 
+	max_int = stack->data;
 	while (stack)
 	{
-		if (stack->data > max)
-			max = stack->data;
+		if (stack->data > max_int)
+			max_int = stack->data;
 		stack = stack->next;
 	}
-	return (max);
+	return (max_int);
 }
 
-int	get_digit(int num, int pos)
+static int get_bit_len(int max_int)
 {
-	return ((num / pos) % 10);
+    int len;
+
+    len = 0;
+    while ((max_int >> len) != 0)
+        len++;
+    return (len);
 }
 
-int	radix_sort(t_stack **stack_a, t_stack **stack_b) // updated
+int	radix_sort(t_stack **stack_a, t_stack **stack_b)
 {
-	int count_ops;
-	int max = get_max(*stack_a);
-	int pos = 1;
+	int		bit_len;
+	int		i;
+	int		j;
+	int		size;
+	int		max_int;
+	int		op_count;
 
-	count_ops;
-	while (max / pos > 0)
+	op_count = 0;
+	max_int = get_max_int(*stack_a);
+	bit_len = get_bit_len(max_int);
+	size = stack_size(*stack_a);
+	i = 0;
+	while (i < bit_len)
 	{
-		t_stack *current = *stack_a;
-		while (current)
+		j = 0;
+		while (j < size)
 		{
-			if (get_digit(current->data, pos) == 0)
-				pb(stack_a, stack_b);
+			if ((((*stack_a)->data >> i) & 1) == 0)
+				op_count += pb(stack_a, stack_b);
 			else
-				ra(stack_a);
-			current = current->next;
+				op_count += ra(stack_a);
+			j++;
 		}
 		while (*stack_b)
-			pa(stack_a, stack_b);
-
-		pos *= 10;
+			op_count += pa(stack_a, stack_b);
+		i++;
 	}
-	return (count_ops);
+    printf("need %d ops", op_count);
+	return (op_count);
 }
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leiwang <leiwang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: leia <leia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:00:57 by leiwang           #+#    #+#             */
-/*   Updated: 2025/05/04 21:57:40 by leiwang          ###   ########.fr       */
+/*   Updated: 2025/05/05 11:31:43 by leia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int					ft_split_size(char **split);
 void				free_strarr(char **strarr);
 void				free_all(char **strarr, char *str);
 int					is_sorted(t_stack *stack);
-int					radix_sort(t_stack **stack_a, t_stack **stack_b);
 void				add_to_stack_a(t_stack **stack_a, int value);
 int					sort_small_stack(t_stack **stack_a, t_stack **stack_b);
 int					sort_five(t_stack **stack_a, t_stack **stack_b);
@@ -54,5 +53,6 @@ int					move_min_to_top(t_stack **stack_a, int min_index);
 // void print_stack(t_stack *stack_a);
 void				free_stack(t_stack *stack);
 void				push_to_stack(t_stack **stack_a, int *arr, int size);
+int					radix_sort(t_stack **stack_a, t_stack **stack_b);
 
 #endif
