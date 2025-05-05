@@ -6,7 +6,7 @@
 /*   By: leiwang <leiwang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 13:34:48 by leiwang           #+#    #+#             */
-/*   Updated: 2025/05/05 15:40:24 by leiwang          ###   ########.fr       */
+/*   Updated: 2025/05/05 22:13:26 by leiwang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	is_sorted(t_stack *stack)
 			return (0);
 		temp = temp->next;
 	}
-	return (1);
+	return (0);
 }
 
 int	stack_size(t_stack *stack)
@@ -47,9 +47,11 @@ int	main(int argc, char **argv)
 	t_stack	*stack_b;
 	int		*intarr;
 	int		size;
+	int		bit_len;
 
 	stack_a = NULL;
 	stack_b = NULL;
+	bit_len = 0;
 	if (argc < 2)
 		return (0);
 	intarr = argvs_to_intarr(argc, argv, &size);
@@ -67,7 +69,7 @@ int	main(int argc, char **argv)
 	if (stack_size(stack_a) <= 5)
 		sort_small_stack(&stack_a, &stack_b);
 	else
-		radix_sort(&stack_a, &stack_b);
+		radix_sort(&stack_a, &stack_b, size, bit_len);
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return (0);

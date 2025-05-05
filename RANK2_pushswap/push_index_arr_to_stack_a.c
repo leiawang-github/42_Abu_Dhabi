@@ -1,78 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_into_stack.c                                  :+:      :+:    :+:   */
+/*   push_index_arr_to_stack_a.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leiwang <leiwang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:08:10 by leiwang           #+#    #+#             */
-/*   Updated: 2025/05/05 15:44:17 by leiwang          ###   ########.fr       */
+/*   Updated: 2025/05/05 19:20:04 by leiwang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	*intarr_copy_and_sort(int *intarr, int size)
-{
-	int	*sorted;
-	int	i;
-	int	j;
-	int	tmp;
-
-	sorted = malloc(sizeof(int) * size);
-	if (!sorted)
-		return (NULL);
-	i = 0;
-	while (i < size)
-	{
-		sorted[i] = intarr[i];
-		i++;
-	}
-	i = 0;
-	while (i < size - 1)
-	{
-		j = i + 1;
-		while (j < size)
-		{
-			if (sorted[i] > sorted[j])
-			{
-				tmp = sorted[i];
-				sorted[i] = sorted[j];
-				sorted[j] = tmp;
-			}
-			j++;
-		}
-		i++;
-	}
-	return (sorted);
-}
-
-int	*map_to_index_array(int *intarr, int *sorted, int size)
-{
-	int	*index_arr;
-	int	i;
-	int	j;
-
-	index_arr = malloc(sizeof(int) * size);
-	if (!index_arr)
-		return (NULL);
-	i = 0;
-	while (i < size)
-	{
-		j = 0;
-		while (j < size)
-		{
-			if (intarr[i] == sorted[j])
-			{
-				index_arr[i] = j;
-				break ;
-			}
-			j++;
-		}
-		i++;
-	}
-	return (index_arr);
-}
 
 void	add_to_stack_a(t_stack **stack_a, int value)
 {
@@ -107,16 +45,18 @@ void	push_to_stack(t_stack **stack_a, int *index_arr, int size)
 	}
 }
 
-int	push_indexed_stack(t_stack **stack_a, int *raw, int size)
+int	push_indexed_stack(t_stack **stack_a, int *intarr, int size)
 {
-	int	*sorted;
+	int	*copied;
+	int	*sorted_copied;
 	int	*index_arr;
 
-	sorted = intarr_copy_and_sort(raw, size);
-	if (!sorted)
+	copied = copied_intarr(intarr, size);
+	if (!copied)
 		return (0);
-	index_arr = map_to_index_array(raw, sorted, size);
-	free(sorted);
+	sorted_copied = sort_copied_intarr(copied, size);
+	index_arr = map_to_index_array(intarr, sorted_copied, size);
+	free(copied);
 	if (!index_arr)
 		return (0);
 	push_to_stack(stack_a, index_arr, size);

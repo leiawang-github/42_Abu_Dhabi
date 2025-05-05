@@ -6,7 +6,7 @@
 /*   By: leiwang <leiwang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:00:57 by leiwang           #+#    #+#             */
-/*   Updated: 2025/05/05 15:44:24 by leiwang          ###   ########.fr       */
+/*   Updated: 2025/05/05 21:59:11 by leiwang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void				free_strarr(char **strarr);
 void				free_all(char **strarr, char *str);
 int					is_sorted(t_stack *stack);
 void				add_to_stack_a(t_stack **stack_a, int value);
-int					sort_small_stack(t_stack **stack_a, t_stack **stack_b);
+void				sort_small_stack(t_stack **stack_a, t_stack **stack_b);
 int					pa(t_stack **stack_a, t_stack **stack_b);
 int					pb(t_stack **stack_a, t_stack **stack_b);
 int					ra(t_stack **stack_a);
@@ -50,9 +50,12 @@ int					find_min_index(t_stack *stack_a);
 int					move_min_to_top(t_stack **stack_a, int min_index);
 void				free_stack(t_stack *stack);
 void				push_to_stack(t_stack **stack_a, int *arr, int size);
-int					radix_sort(t_stack **stack_a, t_stack **stack_b);
+int					radix_sort(t_stack **stack_a, t_stack **stack_b, int size,
+						int bit_len);
 int					*intarr_copy_and_sort(int *intarr, int size);
 int					*map_to_index_array(int *intarr, int *sorted, int size);
 int					push_indexed_stack(t_stack **stack_a, int *raw, int size);
+int					*copied_intarr(int *intarr, int size);
+int					*sort_copied_intarr(int *copied_intarr, int size);
 
 #endif
