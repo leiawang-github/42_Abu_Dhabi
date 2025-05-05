@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leia <leia@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: leiwang <leiwang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 13:34:48 by leiwang           #+#    #+#             */
-/*   Updated: 2025/05/05 11:31:25 by leia             ###   ########.fr       */
+/*   Updated: 2025/05/05 15:40:24 by leiwang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,17 @@ int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	int     *intarr;
+	int		*intarr;
 	int		size;
 
 	stack_a = NULL;
 	stack_b = NULL;
-
 	if (argc < 2)
 		return (0);
 	intarr = argvs_to_intarr(argc, argv, &size);
 	if (!intarr)
 		return (1);
-	if (!parse_and_push_indexed_stack(&stack_a, intarr, size))
+	if (!push_indexed_stack(&stack_a, intarr, size))
 	{
 		free(intarr);
 		write(2, "Error\n", 6);
@@ -73,4 +72,3 @@ int	main(int argc, char **argv)
 	free_stack(stack_b);
 	return (0);
 }
-

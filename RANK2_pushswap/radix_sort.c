@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   radix_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leia <leia@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: leiwang <leiwang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:11:18 by leia              #+#    #+#             */
-/*   Updated: 2025/05/05 11:41:57 by leia             ###   ########.fr       */
+/*   Updated: 2025/05/05 15:59:42 by leiwang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int get_max_int(t_stack *stack)
+static int	get_max_int(t_stack *stack)
 {
-	int max_int;
+	int	max_int;
 
-    max_int = 0;
+	max_int = 0;
 	if (!stack)
-		return (0); 
+		return (0);
 	max_int = stack->data;
 	while (stack)
 	{
@@ -29,24 +29,24 @@ static int get_max_int(t_stack *stack)
 	return (max_int);
 }
 
-static int get_bit_len(int max_int)
+static int	get_bit_len(int max_int)
 {
-    int len;
+	int	len;
 
-    len = 0;
-    while ((max_int >> len) != 0)
-        len++;
-    return (len);
+	len = 0;
+	while ((max_int >> len) != 0)
+		len++;
+	return (len);
 }
 
 int	radix_sort(t_stack **stack_a, t_stack **stack_b)
 {
-	int		bit_len;
-	int		i;
-	int		j;
-	int		size;
-	int		max_int;
-	int		op_count;
+	int	bit_len;
+	int	i;
+	int	j;
+	int	size;
+	int	max_int;
+	int	op_count;
 
 	op_count = 0;
 	max_int = get_max_int(*stack_a);
@@ -68,7 +68,6 @@ int	radix_sort(t_stack **stack_a, t_stack **stack_b)
 			op_count += pa(stack_a, stack_b);
 		i++;
 	}
-    printf("need %d ops", op_count);
+	printf("need %d ops", op_count);
 	return (op_count);
 }
-

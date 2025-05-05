@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_into_stack.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leia <leia@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: leiwang <leiwang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:08:10 by leiwang           #+#    #+#             */
-/*   Updated: 2025/05/04 23:23:09 by leia             ###   ########.fr       */
+/*   Updated: 2025/05/05 15:44:17 by leiwang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,7 @@ void	push_to_stack(t_stack **stack_a, int *index_arr, int size)
 	}
 }
 
-
-int	parse_and_push_indexed_stack(t_stack **stack_a, int *raw, int size)
+int	push_indexed_stack(t_stack **stack_a, int *raw, int size)
 {
 	int	*sorted;
 	int	*index_arr;
@@ -124,5 +123,3 @@ int	parse_and_push_indexed_stack(t_stack **stack_a, int *raw, int size)
 	free(index_arr);
 	return (1);
 }
-
-

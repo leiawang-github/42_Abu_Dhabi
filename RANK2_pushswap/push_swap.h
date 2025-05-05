@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leia <leia@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: leiwang <leiwang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 16:00:57 by leiwang           #+#    #+#             */
-/*   Updated: 2025/05/05 11:31:43 by leia             ###   ########.fr       */
+/*   Updated: 2025/05/05 15:44:24 by leiwang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,11 @@ int					sb(t_stack **stack_b);
 int					rra(t_stack **stack_a);
 int					find_min_index(t_stack *stack_a);
 int					move_min_to_top(t_stack **stack_a, int min_index);
-// int rrb(t_stack **stack_b);
-// void print_stack(t_stack *stack_a);
 void				free_stack(t_stack *stack);
 void				push_to_stack(t_stack **stack_a, int *arr, int size);
 int					radix_sort(t_stack **stack_a, t_stack **stack_b);
-//int					*intarr_copy_and_sort(int *intarr, int size);
-
 int					*intarr_copy_and_sort(int *intarr, int size);
 int					*map_to_index_array(int *intarr, int *sorted, int size);
-int					parse_and_push_indexed_stack(t_stack **stack_a, int *raw, int size);
-
+int					push_indexed_stack(t_stack **stack_a, int *raw, int size);
 
 #endif
