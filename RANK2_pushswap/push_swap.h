@@ -39,7 +39,6 @@ void				free_all(char **strarr, char *str);
 int					is_sorted(t_stack *stack);
 void				add_to_stack_a(t_stack **stack_a, int value);
 int					sort_small_stack(t_stack **stack_a, t_stack **stack_b);
-int					sort_five(t_stack **stack_a, t_stack **stack_b);
 int					pa(t_stack **stack_a, t_stack **stack_b);
 int					pb(t_stack **stack_a, t_stack **stack_b);
 int					ra(t_stack **stack_a);
@@ -54,5 +53,11 @@ int					move_min_to_top(t_stack **stack_a, int min_index);
 void				free_stack(t_stack *stack);
 void				push_to_stack(t_stack **stack_a, int *arr, int size);
 int					radix_sort(t_stack **stack_a, t_stack **stack_b);
+//int					*intarr_copy_and_sort(int *intarr, int size);
+
+int					*intarr_copy_and_sort(int *intarr, int size);
+int					*map_to_index_array(int *intarr, int *sorted, int size);
+int					parse_and_push_indexed_stack(t_stack **stack_a, int *raw, int size);
+
 
 #endif

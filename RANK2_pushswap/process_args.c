@@ -59,12 +59,12 @@ static int	*split_to_intarr(char **split, int *out_size)
 int	*argvs_to_intarr(int argc, char **argv, int *size)
 {
 	char	**split;
-	int		*arr;
+	int		*intarr;
 
 	split = argvs_to_split(argc, argv);
 	if (!split)
 		return (NULL);
-	arr = split_to_intarr(split, size);
+	intarr = split_to_intarr(split, size);
 	free_strarr(split);
-	return (arr);
+	return (intarr);
 }
